@@ -1,10 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 
 const LoginPage = () => {
     const [cpfInput, setCpfInput] = useState("");
     const inputOnChange = (e) => {
         const re = /^[0-9\b]+$/;
-        if (e.target.value == '' || re.test(e.target.value)) setCpfInput(e.target.value)
+        if (e.target.value == '' || re.test(e.target.value)) setCpfInput(e.target.value);
+    }
+    
+    const navigate = useNavigate();
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // Requisição para o back checando se o cpf está cadastrado, trocar os valores para o retorno da api
+        // localStorage.setItem(res.data...)
+        localStorage.setItem("cpf", cpfInput);
+        localStorage.setItem("nome", "Jogador");
+        navigate("/");
     }
 
     return(
@@ -19,7 +30,7 @@ const LoginPage = () => {
 
                     <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                         <p class="text-center text-3xl">Bem-vindo.</p>
-                        <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
+                        <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => onSubmit(e)}>
                             <div class="flex flex-col pt-4">
                                 <label for="cpf" class="text-lg">CPF (Apenas números)</label>
                                 <input value={cpfInput} onChange={e => inputOnChange(e)} type="cpf" id="cpf" placeholder="0000000000" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
@@ -49,4 +60,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default LoginPage;

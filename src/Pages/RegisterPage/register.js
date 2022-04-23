@@ -20,7 +20,7 @@ const RegisterPage = () => {
                     </div>
         
                     <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-                        <p class="text-center text-3xl">Join Us.</p>
+                        <p class="text-center text-3xl">Cadastre-se.</p>
                         <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
                             <div class="flex flex-col pt-4">
                                 <label for="name" class="text-lg">Nome</label>
@@ -59,4 +59,4 @@ const RegisterPage = () => {
     )
 }
 
-export default RegisterPage
+export default RegisterPage;
