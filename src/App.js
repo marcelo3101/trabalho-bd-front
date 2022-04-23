@@ -9,6 +9,7 @@ import './App.css';
 import LoginPage from './Pages/LoginPage/login';
 import RegisterPage from './Pages/RegisterPage/register';
 import HomePage from "./Pages/home";
+import UserPage from "./Pages/user_home";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/" element={<HomePage/>}/>
           <Route path="/register" element={<RegisterPage/>} />
           <Route path="/login" element={<LoginPage/>} />
+          <Route path="/user_home" element={<UserPage/>}/>
         </Routes>
       </Router>
     </div>
