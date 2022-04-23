@@ -1,4 +1,10 @@
-import logo from './logo.svg';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
 import './App.css';
 import LoginPage from './Pages/LoginPage/login';
 import RegisterPage from './Pages/RegisterPage/register';
@@ -6,7 +12,12 @@ import RegisterPage from './Pages/RegisterPage/register';
 function App() {
   return (
     <div className="App">
-      <RegisterPage/>
+      <Router>
+        <Routes>
+          <Route path="/register" element={<RegisterPage/>} />
+          <Route path="/login" element={<LoginPage/>} />
+        </Routes>
+      </Router>
     </div>
   );
 }
