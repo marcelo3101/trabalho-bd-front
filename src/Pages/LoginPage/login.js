@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 const LoginPage = () => {
+    const [cpfInput, setCpfInput] = useState("");
+    const inputOnChange = (e) => {
+        const re = /^[0-9\b]+$/;
+        if (e.target.value == '' || re.test(e.target.value)) setCpfInput(e.target.value)
+    }
+
     return(
         <body class="bg-white font-family-karla h-screen">
 
@@ -15,8 +21,8 @@ const LoginPage = () => {
                         <p class="text-center text-3xl">Welcome.</p>
                         <form class="flex flex-col pt-3 md:pt-8" onsubmit="event.preventDefault();">
                             <div class="flex flex-col pt-4">
-                                <label for="email" class="text-lg">Email</label>
-                                <input type="email" id="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
+                                <label for="cpf" class="text-lg">CPF (Apenas números)</label>
+                                <input value={cpfInput} onChange={e => inputOnChange(e)} type="cpf" id="cpf" placeholder="0000000000" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
                             </div>
             
                             <div class="flex flex-col pt-4">
