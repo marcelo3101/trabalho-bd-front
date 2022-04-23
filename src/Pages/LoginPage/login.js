@@ -15,7 +15,7 @@ const LoginPage = () => {
         // localStorage.setItem(res.data...)
         localStorage.setItem("cpf", cpfInput);
         localStorage.setItem("nome", "Jogador");
-        navigate("/");
+        navigate("/user_home");
     }
 
     return(

@@ -30,7 +30,6 @@ const EditUser = () => {
                  </form>
              </div>
         </div>
-
     )
 }
 

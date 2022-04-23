@@ -5,11 +5,16 @@ import EditUser from "../Components/editar_perfil";
 const UserPage = () => {
     const [comp, setComp] = useState(0);
     const [loading, setLoading] = useState(false);
-    
+    const navigate  = useNavigate()
     const handleClickNavigate = (value) => {
         setLoading(true);
         setComp(value);
         setLoading(false);
+    }
+
+    const handleLogout = () => {
+        localStorage.clear()
+        navigate("/")
     }
 
     return(
@@ -32,6 +37,9 @@ const UserPage = () => {
                             </button>
                             <button onClick={() => handleClickNavigate(3)} value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                                 Editar Perfil
+                            </button>
+                            <button onClick={() => handleLogout()} value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                                Sair
                             </button>
                     </div>
 
