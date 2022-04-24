@@ -5,6 +5,7 @@ import api from "../api";
 const EditBooking = (reserva) => {
     const [inicio, setInicio] = useState(reserva.data_hora_inicio);
     const [fim, setFim] = useState(reserva.data_hora_termino);
+    const [loading, setLoading] = useState(true);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,9 +21,16 @@ const EditBooking = (reserva) => {
         }
         )
     }
+
+    useEffect(() => {
+        if(reserva){
+            setLoading(false);
+        }
+    }, [reserva]);
     
     return(
         <div class="bg-white font-family-karla h-screen flex justify-center">
+            {!loading &&
            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                  <p class="text-center text-3xl">Editar Reserva</p>
                  <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => handleSubmit(e)}>
@@ -39,6 +47,7 @@ const EditBooking = (reserva) => {
                        <input type="submit" value="Salvar" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
                  </form>
              </div>
+             }
         </div>
     )
 }
