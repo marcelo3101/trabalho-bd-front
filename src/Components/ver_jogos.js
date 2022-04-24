@@ -24,7 +24,7 @@ const SeeGames = () => {
             `/jogos/${id}`,
         ).then( () => {
             setLoading(true);
-            getjogos();
+            getJogos();
         }
         )
     }
