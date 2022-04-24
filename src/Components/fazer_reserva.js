@@ -10,12 +10,13 @@ const MakeBooking = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         api.post(
-            "",
+            "/reserva/",
             {
                 "campo_id": campo,
                 "data_hora_inicio": inicio,
                 "data_hora_termino": fim,
-                "reservador_CPF": localStorage.getItem("cpf")
+                "reservador_CPF": localStorage.getItem("cpf"),
+                "preco": 0.00
             }
         ).then( () => {
             setCampo(0);
