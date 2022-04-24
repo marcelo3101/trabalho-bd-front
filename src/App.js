@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import LoginPage from './Pages/LoginPage/login';
-import RegisterPage from './Pages/RegisterPage/register';
+import LoginPage from './Pages/login';
+import RegisterPage from './Pages/register';
 import HomePage from "./Pages/home";
 import UserPage from "./Pages/user_home";
 

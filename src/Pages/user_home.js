@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CreateGame from "../Components/criar_jogo";
 import EditUser from "../Components/editar_perfil";
+import MakeBooking from "../Components/fazer_reserva";
+import SeeInscritos from "../Components/ver_inscritos";
+import SeeGames from "../Components/ver_jogos";
+import SeeCreated from "../Components/ver_jogos_criados";
+import SeeBookings from "../Components/ver_reservas";
 
 const UserPage = () => {
     const [comp, setComp] = useState(0);
@@ -29,16 +35,28 @@ const UserPage = () => {
 
                     <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                         <p class="text-center text-3xl">Futpagode</p>
-                            <button onClick={() => handleClickNavigate(1)} value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                            <button onClick={() => handleClickNavigate(1)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                                 Ver Reservas
                             </button>
-                            <button onClick={() => handleClickNavigate(2)} value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                            <button onClick={() => handleClickNavigate(2)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                                 Fazer Reserva
                             </button>
-                            <button onClick={() => handleClickNavigate(3)} value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                            <button onClick={() => handleClickNavigate(3)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                                Ver Jogos
+                            </button>
+                            <button onClick={() => handleClickNavigate(4)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                                Ver Jogos Inscritos
+                            </button>
+                            <button onClick={() => handleClickNavigate(5)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                                Ver jogos criados
+                            </button>
+                            <button onClick={() => handleClickNavigate(6)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                                Criar Jogo
+                            </button>
+                            <button onClick={() => handleClickNavigate(7)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                                 Editar Perfil
                             </button>
-                            <button onClick={() => handleLogout()} value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                            <button onClick={() => handleLogout()} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
                                 Sair
                             </button>
                     </div>
@@ -50,12 +68,24 @@ const UserPage = () => {
                         <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0"/>
                     }
                     {comp == 1 &&
-                        <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0"/>
+                        <SeeBookings/>
                     }
                     {comp == 2 &&
-                        <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0"/>
+                        <MakeBooking/>
                     }
                     {comp == 3 &&
+                        <SeeGames/>
+                    }
+                    {comp == 4 &&
+                        <SeeInscritos/>
+                    }
+                    {comp == 5 &&
+                        <SeeCreated/>
+                    }
+                    {comp == 6 &&
+                        <CreateGame/>
+                    }
+                    {comp == 7 &&
                         <EditUser/>
                     }
                 </div>

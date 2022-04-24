@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import image from "../../assets/emcampo-thinkstock.jpg"
+import image from "../assets/emcampo-thinkstock.jpg"
 
 const RegisterPage = () => {
     const [cpfInput, setCpfInput] = useState("");
