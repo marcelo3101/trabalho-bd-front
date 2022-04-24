@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import api from "../api";
+import EditBooking from "./editar_reserva";
 
 const SeeBookings = () => {
     const [reservas, setReservas] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [edit, setEdit] = useState(false);
+    const [reserva, setReserva] = useState(null);
 
     const getReservas = () => {
         api.get(
@@ -29,9 +32,18 @@ const SeeBookings = () => {
         )
     }
 
+    const handleEditClick = (reserva) => {
+        setReserva(reserva);
+        setEdit(true);
+    }
+
     return(
         <div class="bg-white font-family-karla h-screen flex justify-center">   
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+            {edit &&
+                <EditBooking reserva={reserva}/>
+            }
+            {!edit &&
             <div class="flex flex-col">
                 {!loading &&
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -74,6 +86,9 @@ const SeeBookings = () => {
                                         <button onClick={() => handleDelete(reserva.id)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2">
                                             Cancelar
                                         </button>
+                                        <button onClick={() => handleEditClick(reserva)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2">
+                                            Editar
+                                        </button>
                                     </td>
                                     </tr>
                                 )
@@ -86,6 +101,7 @@ const SeeBookings = () => {
                 </div>
                 }
                 </div>
+                }
             </div>
         </div>
     )

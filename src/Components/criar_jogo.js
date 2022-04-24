@@ -34,7 +34,7 @@ const CreateGame = () => {
     return(
         <div class="bg-white font-family-karla h-screen flex justify-center">
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-                 <p class="text-center text-3xl">Fazer Reserva</p>
+                 <p class="text-center text-3xl">Criar Jogo</p>
                  <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => handleSubmit(e)}>
                      <div class="flex justify-center">
                         <div class="mt-3 mb-3 xl:w-96">

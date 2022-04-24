@@ -11,7 +11,6 @@ const EditGame = (jogo) => {
         api.put(
             `/jogo/${jogo.id}`,
             {
-                "campo_id": campo,
                 "data_hora_inicio": inicio,
                 "data_hora_termino": fim,
             }
@@ -24,7 +23,6 @@ const EditGame = (jogo) => {
     
     return(
         <div class="bg-white font-family-karla h-screen flex justify-center">
-           {!loading &&
            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                  <p class="text-center text-3xl">Editar Jogo</p>
                  <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => handleSubmit(e)}>
@@ -41,7 +39,6 @@ const EditGame = (jogo) => {
                        <input type="submit" value="Salvar" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
                  </form>
              </div>
-             }
         </div>
     )
 }

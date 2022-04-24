@@ -32,7 +32,7 @@ const EditUser = () => {
         <div class="bg-white font-family-karla h-screen flex justify-center">
            {!loading &&
            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-                 <p class="text-center text-3xl">Editar Perfil.</p>
+                 <p class="text-center text-3xl">Editar Perfil</p>
                  <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => handleSubmit(e)}>
                      <div class="flex flex-col pt-4">
                          <label for="name" class="text-lg">Nome</label>
