@@ -11,8 +11,9 @@ const SeeBookings = () => {
 
     const getReservas = () => {
         api.get(
-            `/reservas/${localStorage.getItem("cpf")}`
+            `/reservas/criou/${localStorage.getItem("cpf")}`
         ).then((res) => {
+            console.log(res)
             setReservas(res.data);
             setLoading(false);
         });
@@ -32,9 +33,9 @@ const SeeBookings = () => {
         )
     }
 
-    const handleEditClick = (reserva) => {
-        setReserva(reserva);
-        setEdit(true);
+    const handleEditClick = async (reserva) => {
+        setReserva(reserva)
+        setEdit(true)
     }
 
     return(

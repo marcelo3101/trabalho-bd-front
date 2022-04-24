@@ -13,7 +13,7 @@ const LoginPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Requisição para o back checando se o cpf está cadastrado, trocar os valores para o retorno da api
-        api.post("/jogador/login", 
+        api.post("/jogadores/login", 
             {
                 "cpf": cpfInput
             }
