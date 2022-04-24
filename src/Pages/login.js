@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 const LoginPage = () => {
     const [cpfInput, setCpfInput] = useState("");
@@ -9,13 +10,20 @@ const LoginPage = () => {
     }
     
     const navigate = useNavigate();
-    const onSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         // Requisição para o back checando se o cpf está cadastrado, trocar os valores para o retorno da api
-        // localStorage.setItem(res.data...)
-        localStorage.setItem("cpf", cpfInput);
-        localStorage.setItem("nome", "Jogador");
-        navigate("/user_home");
+        api.post("/jogador/login", 
+            {
+                "cpf": cpfInput
+            }
+        ).then((res) => {
+            localStorage.setItem("cpf", cpfInput);
+            localStorage.setItem("nome", res.data.nome);
+            localStorage.setItem("datanasc", res.data.data_de_nascimento);
+            setCpfInput("");
+            navigate("/user_home");
+        })
     }
 
     return(
@@ -30,7 +38,7 @@ const LoginPage = () => {
 
                     <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                         <p class="text-center text-3xl">Bem-vindo.</p>
-                        <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => onSubmit(e)}>
+                        <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => handleSubmit(e)}>
                             <div class="flex flex-col pt-4">
                                 <label for="cpf" class="text-lg">CPF (Apenas números)</label>
                                 <input value={cpfInput} onChange={e => inputOnChange(e)} type="cpf" id="cpf" placeholder="0000000000" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
