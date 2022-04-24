@@ -1,11 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; 
+import api from "../api";
 
 const MakeBooking = () => {
+    const [campo, setCampo] = useState(0);
+    const [inicio, setInicio] = useState("");
+    const [fim, setFim] = useState("");
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Requisição para o back criando a reserva
+        api.post(
+            "",
+            {
+                "campo_id": campo,
+                "data_hora_inicio": inicio,
+                "data_hora_termino": fim,
+                "reservador_CPF": localStorage.getItem("cpf")
+            }
+        ).then( () => {
+            setCampo(0);
+            setInicio("");
+            setFim("");
+        }
+        )
     }
+    
     const campos = [
         "Real Society",
         "Campo Exemplo"
@@ -18,7 +37,7 @@ const MakeBooking = () => {
                  <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => handleSubmit(e)}>
                      <div class="flex justify-center">
                         <div class="mt-3 mb-3 xl:w-96">
-                            <select class="form-select appearance-none
+                            <select onChange={e => setCampo(e.target.value)} class="form-select appearance-none
                             block
                             w-full
                             px-3
@@ -44,11 +63,11 @@ const MakeBooking = () => {
                       </div>
                         <div class="flex flex-col pt-4">
                          <label for="start-time" class="text-lg">Início</label>
-                         <input type="datetime-local" id="start-time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                         <input value={inicio} onChange={e => setInicio(e.target.value)} type="datetime-local" id="start-time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                         </div>
                         <div class="flex flex-col pt-4">
                          <label for="start-time" class="text-lg">Término</label>
-                         <input type="datetime-local" id="start-time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                         <input value={fim} onChange={e => setFim(e.target.value)} type="datetime-local" id="start-time" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                         </div>
                        <input type="submit" value="Reservar" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
                  </form>
