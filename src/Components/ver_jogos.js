@@ -70,11 +70,6 @@ const SeeGames = () => {
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {jogo.data_hora_termino}
                                     </td>
-                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        <button onClick={() => handleDelete(jogo.id)} class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2">
-                                            Cancelar
-                                        </button>
-                                    </td>
                                     </tr>
                                 )
                             })
