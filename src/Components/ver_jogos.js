@@ -4,14 +4,12 @@ import api from "../api";
 
 const SeeGames = () => {
     const [jogos, setJogos] = useState(null);
-    const [loading, setLoading] = useState(true);
 
     const getJogos = () => {
         api.get(
             `/jogos`
         ).then((res) => {
             setJogos(res.data);
-            setLoading(false);
         });
     }
     
@@ -19,21 +17,11 @@ const SeeGames = () => {
         getJogos();
     }, []);
 
-    const handleDelete = (id) => {
-        api.delete(
-            `/jogos/${id}`,
-        ).then( () => {
-            setLoading(true);
-            getJogos();
-        }
-        )
-    }
-
     return(
         <div class="bg-white font-family-karla h-screen flex justify-center">
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
             <div class="flex flex-col">
-            {!loading &&
+            {!jogos &&
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="overflow-hidden">

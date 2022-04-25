@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import api from "../api";
 
-const EditGame = (jogo) => {
+const EditGame = ({jogo}) => {
     const [inicio, setInicio] = useState(jogo.data_hora_inicio);
     const [fim, setFim] = useState(jogo.data_hora_termino);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        api.put(
-            `/jogo/${jogo.id}`,
+        api.patch(
+            `/jogos/${jogo.id}`,
             {
                 "data_hora_inicio": inicio,
                 "data_hora_termino": fim,
@@ -20,7 +20,7 @@ const EditGame = (jogo) => {
         }
         )
     }
-    
+
     return(
         <div class="bg-white font-family-karla h-screen flex justify-center">
            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">

@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
 import api from "../api";
 
-const EditBooking = (reserva) => {
+const EditBooking = ({reserva}) => {
     const [inicio, setInicio] = useState(reserva.data_hora_inicio);
     const [fim, setFim] = useState(reserva.data_hora_termino);
     const [loading, setLoading] = useState(true);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        api.put(
-            `/reserva/${reserva.id}`,
+        api.patch(
+            `/reservas/${reserva.id}`,
             {
                 "data_hora_inicio": inicio,
                 "data_hora_termino": fim,

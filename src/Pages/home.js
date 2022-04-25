@@ -9,7 +9,6 @@ const HomePage = () => {
     }
 
     const navigate = useNavigate()
-    console.log(window.location)
     const handleClick = (path) => {
         navigate(`${path}`);
     }

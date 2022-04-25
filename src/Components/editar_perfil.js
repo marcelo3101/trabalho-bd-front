@@ -15,8 +15,8 @@ const EditUser = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        api.put(
-            "",
+        api.patch(
+            "/jogadores/"+localStorage.getItem("cpf"),
             {
                 "nome": nome,
                 "data_de_nascimento": data

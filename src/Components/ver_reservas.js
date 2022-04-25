@@ -6,14 +6,12 @@ import EditBooking from "./editar_reserva";
 const SeeBookings = () => {
     const [reservas, setReservas] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [edit, setEdit] = useState(false);
     const [reserva, setReserva] = useState(null);
 
     const getReservas = () => {
         api.get(
             `/reservas/criou/${localStorage.getItem("cpf")}`
         ).then((res) => {
-            console.log(res)
             setReservas(res.data);
             setLoading(false);
         });
@@ -35,16 +33,15 @@ const SeeBookings = () => {
 
     const handleEditClick = async (reserva) => {
         setReserva(reserva)
-        setEdit(true)
     }
 
     return(
         <div class="bg-white font-family-karla h-screen flex justify-center">   
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-            {edit &&
+            {reserva &&
                 <EditBooking reserva={reserva}/>
             }
-            {!edit &&
+            {!reserva &&
             <div class="flex flex-col">
                 {!loading &&
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">

@@ -1,35 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 
 const CreateGame = () => {
-    const [campo, setCampo] = useState(0);
+    const [selected, setSelected] = useState(0);
+    const [reservas, setReservas] = useState([]);
     const [inicio, setInicio] = useState("");
     const [fim, setFim] = useState("");
 
     const handleSubmit = (e) => {
+        console.log(selected)
         e.preventDefault();
         api.post(
-            "/reserva/",
+            "/jogos/",
             {
-                "campo_id": campo,
                 "data_hora_inicio": inicio,
                 "data_hora_termino": fim,
-                "reservador_CPF": localStorage.getItem("cpf"),
-                "preco": 0.00
+                "Ranking_maximo": 0,
+                "Ranking_minimo": 0,
+                "Reserva_id": parseInt(selected)
             }
         ).then( () => {
-            setCampo(0);
+            setSelected(0);
             setInicio("");
             setFim("");
         }
         )
     }
-    
-    const campos = [
-        "Real Society",
-        "Campo Exemplo"
-    ]
+
+    useEffect(()=>{
+        api.get(`/reservas/criou/${localStorage.getItem("cpf")}`)
+        .then((res) => {
+            setReservas(res.data)
+        })
+    }, [])
 
     return(
         <div class="bg-white font-family-karla h-screen flex justify-center">
@@ -38,7 +42,7 @@ const CreateGame = () => {
                  <form class="flex flex-col pt-3 md:pt-8" onSubmit={e => handleSubmit(e)}>
                      <div class="flex justify-center">
                         <div class="mt-3 mb-3 xl:w-96">
-                            <select onChange={e => setCampo(e.target.value)} class="form-select appearance-none
+                            <select onChange={e => setSelected(e.target.value)} class="form-select appearance-none
                             block
                             w-full
                             px-3
@@ -53,10 +57,10 @@ const CreateGame = () => {
                             ease-in-out
                             m-0
                             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                <option selected>Selecione um campo</option>
-                                {campos.map((campo, id) => {
+                                <option selected>Selecione uma Reserva</option>
+                                {reservas.map((reserva) => {
                                     return (
-                                        <option value={id}>{campo}</option>
+                                        <option value={reserva.id}>{reserva.id}</option>
                                     );
                                 })}
                             </select>

@@ -8,7 +8,7 @@ const SeeInscritos = () => {
 
     const getInscritos = () => {
         api.get(
-            `/joga/${localStorage.getItem("cpf")}`
+            `/jogos/joga/${localStorage.getItem("cpf")}`
         ).then((res) => {
             setInscritos(res.data);
             setLoading(false);
@@ -21,7 +21,7 @@ const SeeInscritos = () => {
 
     const handleDelete = (id) => {
         api.delete(
-            `/joga/${id}`,
+            `jogos/quit/${id}`,
         ).then( () => {
             setLoading(true);
             getInscritos();
