@@ -6,10 +6,12 @@ const EditUser = () => {
     const [nome, setNome] = useState("");
     const [data, setData] = useState("");
     const [loading, setLoading] = useState(true);
+    const [image, setImage] = useState("");
 
     useEffect(() => {
         setNome(localStorage.getItem("nome"));
         setData(localStorage.getItem("datanasc"));
+        // Requisição para pegar imagem setImage();
         setLoading(false);
     }, []);
 
@@ -26,6 +28,14 @@ const EditUser = () => {
             localStorage.setItem("datanasc", data)
             }
         )
+        // enviar imagem para o back ...
+    }
+
+    const handleUpload = async (file) => {
+        setImage("");
+        const imageUrl = URL.createObjectURL(file);
+        console.log(imageUrl);
+        setImage(imageUrl);
     }
 
     return(
@@ -42,11 +52,18 @@ const EditUser = () => {
                          <label for="password" class="text-lg">Senha</label>
                          <input type="password" id="password" placeholder="Senha" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                      </div>
-               <div class="flex flex-col pt-4">
+                    <div class="flex flex-col pt-4">
                          <label for="birth-date" class="text-lg">Data de Nascimento</label>
                          <input value={data} onChange={e => setData(e.target.value)} type="date" id="birth-date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
-                     </div>
-                       <input type="submit" value="Salvar" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
+                    </div>
+                    <div class="flex flex-col m-auto pt-4">
+                        {image.length > 0 &&
+                            <img class="h-22 w-20" src={image} />
+                        }
+                        <label for="avatar" class="text-lg">Imagem de perfil</label>
+                        <input onChange={e => handleUpload(e.target.files[0])} type="file" id="avatar" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                    </div>
+                        <input type="submit" value="Salvar" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8" />
                  </form>
              </div>
              }
